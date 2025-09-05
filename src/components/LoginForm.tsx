@@ -1,14 +1,51 @@
+import { useNavigate } from "@solidjs/router";
 import GalleryVerticalEnd from "lucide-solid/icons/gallery-vertical-end";
 import { type Component, type ComponentProps, splitProps } from "solid-js";
 import { Button } from "@/components/ui/button";
+import { authClient } from "@/lib/auth-client";
 import { cn } from "@/lib/utils";
 import { TextField, TextFieldInput, TextFieldLabel } from "./ui/text-field";
+import { showToast } from "./ui/toast";
 
 export const LoginForm: Component<ComponentProps<"div">> = (props) => {
   const [, rest] = splitProps(props, ["class"]);
+  const navigate = useNavigate();
+
   return (
     <div class={cn("flex flex-col gap-6", props.class)} {...rest}>
-      <form>
+      <form
+        onSubmit={async (e) => {
+          e.preventDefault();
+          const form = e.target as HTMLFormElement;
+          const formData = new FormData(form);
+          const email = formData.get("email");
+          const password = formData.get("password");
+          if (typeof email !== "string" || typeof password !== "string") {
+            return new Error("Email and password are required");
+          }
+          const { data, error } = await authClient.signIn.email({
+            email,
+            password,
+            callbackURL: "/",
+            rememberMe: true,
+          });
+          if (error) {
+            showToast({
+              title: "Sign in failed",
+              description: error.message,
+              variant: "error",
+            });
+          } else {
+            showToast({
+              title: "Sign in successfully",
+              description: `Welcome, ${data.user.name}`,
+              variant: "success",
+            });
+            form.reset();
+            navigate("/");
+          }
+        }}
+      >
         <div class="flex flex-col gap-6">
           <div class="flex flex-col items-center gap-2">
             <a href="/" class="flex flex-col items-center gap-2 font-medium">
