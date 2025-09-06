@@ -1,5 +1,5 @@
 import { A, useNavigate } from "@solidjs/router";
-import { createEffect, Show } from "solid-js";
+import { Show } from "solid-js";
 import { Button } from "@/components/ui/button";
 import { showToast } from "@/components/ui/toast";
 import { authClient } from "@/lib/auth-client";
@@ -7,10 +7,6 @@ import { authClient } from "@/lib/auth-client";
 export default function Home() {
   const session = authClient.useSession();
   const navigate = useNavigate();
-
-  createEffect(() => {
-    console.info(session().data);
-  });
 
   return (
     <main class="flex h-dvh w-dvw items-center justify-center gap-4">
