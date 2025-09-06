@@ -1,3 +1,4 @@
+import { MetaProvider, Title } from "@solidjs/meta";
 import { Router } from "@solidjs/router";
 import { FileRoutes } from "@solidjs/start/router";
 import { type ParentComponent, Suspense } from "solid-js";
@@ -25,7 +26,8 @@ const RootLayout: ParentComponent = (props) => {
   );
 
   return (
-    <>
+    <MetaProvider>
+      <Title>Solid Starter App</Title>
       <ColorModeScript storageType={storageManager.type} />
       <ColorModeProvider storageManager={storageManager}>
         <Suspense>
@@ -39,7 +41,7 @@ const RootLayout: ParentComponent = (props) => {
         </Suspense>
       </ColorModeProvider>
       <Toaster />
-    </>
+    </MetaProvider>
   );
 };
 
