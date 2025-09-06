@@ -7,6 +7,7 @@ export const serverScheme = z.object({
   DATABASE_URL: z.string(),
   BETTER_AUTH_SECRET: z.string(),
   BETTER_AUTH_URL: z.string(),
+  SERVER_URL: z.string(),
 });
 
 export const clientScheme = z.object({

@@ -11,6 +11,7 @@ export default defineConfig({
     },
     plugins: [tailwindcss()],
   },
+  middleware: "src/middlewares/index.ts",
   server: {
     preset: "node",
   },
