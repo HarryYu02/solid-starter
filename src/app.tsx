@@ -11,8 +11,6 @@ import {
 } from "@kobalte/core";
 import { isServer } from "solid-js/web";
 import { getCookie } from "vinxi/http";
-import { AppSidebar } from "@/components/AppSideBar";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 
 function getServerCookies() {
   "use server";
@@ -30,15 +28,7 @@ const RootLayout: ParentComponent = (props) => {
       <Title>Solid Starter App</Title>
       <ColorModeScript storageType={storageManager.type} />
       <ColorModeProvider storageManager={storageManager}>
-        <Suspense>
-          <SidebarProvider>
-            <AppSidebar />
-            <div>
-              <SidebarTrigger />
-              {props.children}
-            </div>
-          </SidebarProvider>
-        </Suspense>
+        <Suspense>{props.children}</Suspense>
       </ColorModeProvider>
       <Toaster />
     </MetaProvider>

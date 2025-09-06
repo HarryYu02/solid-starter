@@ -1,9 +1,9 @@
-# SolidStarter
+# Solid Starter
 
 My solid start project starter template because I am spending too much time on this shit.
 Kinda opinionated, use it to your own likings.
 
-## Prerequisite
+## Prerequisites
 
 - IDK, node >= 22?
 - I use pnpm, if you use others, just make sure to configure your post installation script.
@@ -16,8 +16,8 @@ Kinda opinionated, use it to your own likings.
 
 ## Stack
 
-- SolidStart + Vinxi
-- Tailwind v4
+- SolidStart
+- Tailwindcss
 - KobalteUI + SolidUI + Lucide icon
 - Sqlite + Drizzle
 - Better auth
