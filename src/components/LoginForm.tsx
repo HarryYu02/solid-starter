@@ -26,7 +26,6 @@ export const LoginForm: Component<ComponentProps<"div">> = (props) => {
           const { data, error } = await authClient.signIn.email({
             email,
             password,
-            callbackURL: "/",
             rememberMe: true,
           });
           if (error) {
