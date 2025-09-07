@@ -18,7 +18,7 @@ function getServerCookies() {
   return colorMode ? `kb-color-mode=${colorMode}` : "";
 }
 
-const RootLayout: ParentComponent = (props) => {
+const Root: ParentComponent = (props) => {
   const storageManager = cookieStorageManagerSSR(
     isServer ? getServerCookies() : document.cookie,
   );
@@ -37,7 +37,7 @@ const RootLayout: ParentComponent = (props) => {
 
 export default function App() {
   return (
-    <Router root={RootLayout}>
+    <Router root={Root}>
       <FileRoutes />
     </Router>
   );
